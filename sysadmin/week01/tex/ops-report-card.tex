@@ -216,7 +216,7 @@ Of course, to really develop confidence all those bugs and tickets filed as a re
 \subsection{Does each service have an OpsDoc?}
 Your DNS server dies. You rebuild it because you know how. Cool, right? You need to compile the newest version of BIND and install it, and you do it because you know how, right? When the monitoring system reports that error that happens now and then, you know how to fix it, right? You know how to do all this. Why write anything down?
 
-Herer's why:
+Here's why:
 
 Will you remember how to do these things 6 months from now? I find myself having to re-invent a process from scratch if I haven't done it in a few months (or sometimes just a few days!). Not only do I re-invent the process, I repeat all my old mistakes and learn from them again. What a waste of time.
 
@@ -345,14 +345,14 @@ Application patching is just as critical as patching OSs. Users don't make the d
 
 I wish banks had to publish their patching process so I could decide where to keep my money.
 
-The alternative to automation is visiting each machine one at a time. This annoys users, wastes their time, and it a stupid use of your time. With the proliferation of laptops it isn't even reasonable to think you can visit every machine.
+The alternative to automation is visiting each machine one at a time. This annoys users, wastes their time, and it is a stupid use of your time. With the proliferation of laptops it isn't even reasonable to think you can visit every machine.
 
 When possible, updates should happen silently. If they require a reboot or other interruptions, users should have the ability to delay the update. However, there should be a limit; maybe 2 weeks. However the deadline should be adjustable so that emergency security fixes can happen sooner.
 
 \subsection{Do you have a PC refresh policy?}
-If you don't have a policy about when PC will be replaced, they'll never be replaced.
+If you don't have a policy about when PCs will be replaced, they'll never be replaced.
 
-[By ``PC'' I mean the laptop and desktops that people use, not the servers.]
+[By ``PCs'' I mean the laptops and desktops that people use, not the servers.]
 
 In the server room there is usually more thought about when each device gets replaced. Your PC environment generally needs some kind of repeatable, cyclic, process so that it stays fresh. Without it things get old and unsupportable, or people get upgrades as a status symbol and it becomes political. With a good policy things get better and more cost effective.
 
@@ -380,11 +380,11 @@ RAID used to be expensive and rare. A luxury for the rich. Now it is common, ine
 
 The MTBF of a typical server drive is 1.5 million hours. If you have 1,000 disks, expect a failure every 2 months. If you have 10,000 disks expect a failure every week. Are you really planning to spend an entire day restoring data from tape that often?
 
-My rule of thumb is simple: For small servers the boot disk should be mirrrored and any disk with user data should be RAID1 or higher.
+My rule of thumb is simple: For small servers the boot disk should be mirrored and any disk with user data should be RAID1 or higher.
 
-Boot disk: I recommend mirroring the boot disk of every server because it is usually impossible to rebuild from scratch. Server boot disks tend to accumulate ``stuff''. Over the years many software packages may be installed. New drivers, patches and kludges may exist that aren't documented. The configuration is more a history of the company than some well-planned design. In a perfect world none of this would be true. Every machine should be reproducible though an automated system. Alas, that is the goal but we aren't there yet. The primary exception is clusters of homogenous machines like HPC environments or Google or Yahoo!. Alas, dear reader, I bet that isn't your situation. In fact, I bet that even at Google and Yahoo! the Windows server that runs keycard system that lets people in and out of the buildings is exactly the worst-case scenario that needs a mirrored boot disk.
+Boot disk: I recommend mirroring the boot disk of every server because it is usually impossible to rebuild from scratch. Server boot disks tend to accumulate ``stuff''. Over the years many software packages may be installed. New drivers, patches and kludges may exist that aren't documented. The configuration is more a history of the company than some well-planned design. In a perfect world none of this would be true. Every machine should be reproducible though an automated system. Alas, that is the goal but we aren't there yet. The primary exception is clusters of homogeneous machines like HPC environments or Google or Yahoo!. Alas, dear reader, I bet that isn't your situation. In fact, I bet that even at Google and Yahoo! the Windows server that runs keycard system that lets people in and out of the buildings is exactly the worst-case scenario that needs a mirrored boot disk.
 
-Yes, you could probably rebuild such a server in a day if you are lucky, but a RAID1 controler is less than that in salary if you work minimum wage.
+Yes, you could probably rebuild such a server in a day if you are lucky, but a RAID1 controller is less than that in salary if you work minimum wage.
 
 User data: I recommend RAID1 or higher for user data just because it is so inexpensive that not doing it is embarrassing. By the way... you do know that RAID6 is the minimum for 2T disks and larger, right? It is professionally negligent to use RAID5 on such disks. RAID6 or RAID10 is the minimum; at least for now, but I digress.
 
