@@ -52,7 +52,7 @@ After the reboot:
 \section{View our users with PowerShell}
 Open PowerShell on the server and run the following command: 
 
-\texttt{Get-ADUser -Filter * -SearchBase ``dc=directory,dc=micro-agents,dc=net"}
+\texttt{Get-ADUser -Filter * -SearchBase "dc=directory,dc=micro-agents,dc=net"}
 
 This should produce a list of all the user accounts in your domain.  Note especially the value of the \texttt{dc} (domain component) items in the \emph{Distinguished name}. Now run the following:
 
