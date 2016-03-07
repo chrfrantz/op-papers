@@ -18,12 +18,12 @@
 \maketitle
 
 \section*{Introduction}
-Puppet is a tool that allows us to centralise and automate the configuration of computers.  Set up properly, it will save you time and help you keep your server configurations consistent and accurate.  Puppet is an extremely powerful tool."
+Puppet is a tool that allows us to centralise and automate the configuration of computers.  Set up properly, it will save you time and help you keep your server configurations consistent and accurate.  Puppet is an extremely powerful tool." It relies on a correct and consistent network configuration, which includes the correct assignment of (fully qualified) hostnames and a complete specification of network names in the hosts file.
 
 Puppet uses a central server, called the \emph{puppetmaster}, to manage clients, called \emph{agents}.
 
 \section{Set up the puppetmaster}
-On your management server, use \texttt{apt-get} to install the \texttt{puppetmaster} package and its dependencies.  Edit the file \texttt{/etc/puppet.conf} and add the following lines:
+On your management server, use \texttt{apt-get} to install the \texttt{puppetmaster} package and its dependencies.  Edit the file \texttt{/etc/puppet/puppet.conf} and add the following lines:
 
 \
 \begin{verbatim}
@@ -42,7 +42,7 @@ On your db server, use \texttt{apt-get} to install the \texttt{puppet} package a
 puppet agent --server=mgmt.micro-agents.net --no-daemonize --verbose
 \end{verbatim}
 
-You should see output like the following:
+It produces output as shown in the following and will not return to the command prompt (unless interrupted). Just leave it an observe it once you continue with the server configuration.
 
 \begin{verbatim}
 info: Creating a new SSL key for db.micro-agents.net
@@ -70,7 +70,7 @@ This directs Puppet to be sure that \texttt{vim} is installed on our agent - Or 
   import 'nodes.pp'
 \end{verbatim}
 
-It is not necessary to restart the puppetmaster, but if you restart the agent (ctrl-c, up-arrow, enter) it will speed the process along.  Log into your db server in another session and check to see that \texttt{vim} was installed.
+It is not necessary to restart the puppetmaster, but if you restart the agent (ctrl-c, up-arrow, enter) it will speed the process along.  Log into your db server in another session and check to see that \texttt{vim} was installed. Finally, configure the puppet client to start at boot time (see file \texttt{/etc/default puppet} for Debian systems).
 
 
 \end{document}
