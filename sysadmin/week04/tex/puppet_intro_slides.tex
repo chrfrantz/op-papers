@@ -113,11 +113,11 @@ Puppet supports many standard types, and it is possible to define your own.  Som
 
 A node is basically a host you want to configure.
 \begin{verbatim}
-node 'www.sqrawler.com' {
+node 'example.org' {
 
 }
 
-node 'db1.sqrawler.com', 'db2.sqrawler.com' {
+node 'db1.example.org', 'db2.example.org' {
 
 }
 \end{verbatim}
@@ -143,14 +143,14 @@ node default {
 \begin{frame}[fragile]
   \frametitle{Node Inheritance}
 
-A node can inherit from another node.  For example 'www.sqrawler.com' gets all of the configuration from the base node, plus it's own specific configuration.
+A node can inherit from another node.  For example `www.example.org' gets all of the configuration from the base node, plus its own specific configuration.
 
 \begin{verbatim}
 node base {
 
 }
 
-node 'www.sqrawler.com'  inherits base {
+node 'www.example.org' inherits base {
 
 }
 \end{verbatim}
@@ -165,12 +165,12 @@ Note that Puppet best practice is to be careful to avoid overusing inheritance. 
   A collection of related resources can be organised into a \emph{module}.  For example, we may want to install the bacula-fd package, its configuration file, and set up a working directory for restores.  We can create a module that incorporates all of these things, and then use the module in a node:
 
 \begin{verbatim}
-node 'foo.sqrawler.com' {
+node 'foo.example.org' {
   include bacula-client
 }
 \end{verbatim}
 
-We will create and apply a module in today's lab.
+We will create and apply a module in today's second lab.
 
 
 
