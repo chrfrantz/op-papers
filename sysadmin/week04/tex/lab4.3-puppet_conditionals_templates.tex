@@ -6,12 +6,15 @@
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
 \usepackage{enumerate}								% TeX will automatically convert eps --> pdf in pdflatex		
 
+\usepackage{url}
 
 \title{Lab 4.3: A Puppet Module for Hosts Files \\ IN719 Systems Administration}
-%\date{}							% Activate to display a given date or no date
+\date{}							% Activate to display a given date or no date
 
 \begin{document}
 \maketitle
+
+%\vspace{-0.3cm}
 
 \section*{Introduction}
 Last time we made a Puppet module for \texttt{sudo}.  That module wasn't very flexible, however.  It only worked because we configure \texttt{sudo} in the exact same way on every system. Today we'll make a more flexible module to manage our hosts files.  To accomplish this, we'll make use of Puppet's \emph{variables}, \emph{conditionals}, and \emph{templates}.
@@ -27,7 +30,7 @@ Create a standard module structure in the \texttt{/etc/puppet/modules} directory
 Create an \texttt{init.pp} file in your \texttt{manifests} subdirectory.
 
 \section{Module manifest}
-Put the following code in your \texttt{init.pp} file.  Adjust the IP addresses to match your systems.
+The following code is the basis for your \texttt{init.pp} file. At the end of this document you will find sample host files, but you will need to adjust the IP addresses to match your systems. Have a look at the explanation below before starting to work on it.
 
 \begin{verbatim}
   class hosts_file {
@@ -58,17 +61,33 @@ Put the following code in your \texttt{init.pp} file.  Adjust the IP addresses t
   
 \end{verbatim}
 
-\newpage
+%\newpage
 
 There are a few new things happening in this manifest.
 \begin{itemize}
-  \item We're using a \emph{variable}, \texttt{\$osfamily}.  We can define and use our own variables, but many variables are populated for us by a utility called \emph{Facter}.  You can see a list of the core facts produced by Facter at \\ http://docs.puppetlabs.com/facter/1.6/core\_facts.html.
+  \item We're using a \emph{variable}, \texttt{\$osfamily}.  We can define and use our own variables, but many variables are populated for us by a utility called \emph{Facter}.  You can see a list of the core facts produced by Facter at \\ 
+  \url{http://docs.puppetlabs.com/facter/1.6/core_facts.html}.
+  \begin{itemize}
+  \item Hint: Use {\tt facter -p} to find out the variable values for your systems. Try it out!
+  \end{itemize}
   \item We are using an \texttt{if/elsif} structure to conditionally select which Puppet class to use based in the operating system of the agent.
   \item Instead of copying over static files, we are using \emph{templates}.  The template files are to be placed in the \texttt{templates} subdirectory of the module.  Puppet's templates use the erb (Embedded Ruby) templating system.
 \end{itemize}
 
+Right now, we can not just copy and past those files. They are not sufficient to capture the difference between the Debian and Ubuntu system when configuring (and signing certificates) in puppet.
+
+Do you recall the difference?
+
+\vspace{0.5cm}
+%(you should have realised that puppet on Ubuntu uses the name in the second column of the hosts file, whereas Debian uses the third column).
+
+Which variable can you use instead of {\tt \$osfamily} to differentiate between Debian and Ubuntu systems in puppet?
+
+Try to modify the script above to capture this difference.
+
+
 \section{Template files}
-Finally, we need to write our template files in the \texttt{templates} subdirectory of our module.  The text of those files is below.
+Finally, we need to write our template files in the \texttt{templates} subdirectory of our module.  The text of those files is below. Again, you will need to modify those to capture our context.
 
 \textbf{debhosts.erb}
 \begin{verbatim}
@@ -98,6 +117,8 @@ ff02::2 ip6-allrouters
 \end{verbatim}
 
 In these templates we are inserting the correct value for the local host name with the \texttt{hostname} variable that is defined by Facter.
+
+To test whether this setup works for the Windows machine, we have yet to the puppet agent on that machine (see {\small \url{https://docs.puppetlabs.com/puppet/latest/reference/install_windows.html#download-the-windows-puppet-agent-package}}).
 
 \section{Follow up}
 You can, and should, read more about Puppet templates at http://docs.puppetlabs.com/learning/templates.html.
