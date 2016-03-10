@@ -51,7 +51,7 @@ We defined a class, ``sudo" with two resources in it.  The first makes sure that
 
 In the future we can make changes to the configuration file in the module and that updated configuration will be distributed to any agents that need it without requiring us to update the manifest or take any other action.
 
-We still need to place a copy of a sudoers file in the module.  Take a good copy of your sudoers file and copy it to \texttt{/etc/puppet/modules/sudo/files/etc/sudoers}.
+We still need to place a copy of a sudoers file in the module.  Take a good copy of your sudoers file and copy it (to the \underline{file}) \texttt{/etc/puppet/modules/sudo/files/etc/sudoers}.
 
 \section*{Applying the module to a node}
 Once the module is ready we can apply it to a node.  To do this you only need to add one line to the \texttt{nodes.pp} file.  In the node resource you created for the DB server in that last lab, add the line
