@@ -76,14 +76,14 @@ There are a few new things happening in this manifest.
 
 Right now, we can not just copy and past those files. They are not sufficient to capture the difference between the Debian and Ubuntu system when configuring (and signing certificates) in puppet.
 
-Do you recall the difference?
+Do you recall the difference? Did you deal with it?
 
 \vspace{0.5cm}
 %(you should have realised that puppet on Ubuntu uses the name in the second column of the hosts file, whereas Debian uses the third column).
 
 Which variable can you use instead of {\tt \$osfamily} to differentiate between Debian and Ubuntu systems in puppet?
 
-Try to modify the script above to capture this difference.
+Depending on how you dealt with this problem (either by having different host files or not), modify the script above to capture this difference. (If you used all the same hosts files across machines, you should be fine with the script above.)
 
 
 \section{Template files}
@@ -118,7 +118,7 @@ ff02::2 ip6-allrouters
 
 In these templates we are inserting the correct value for the local host name with the \texttt{hostname} variable that is defined by Facter.
 
-To test whether this setup works for the Windows machine, we have yet to the puppet agent on that machine (see {\small \url{https://docs.puppetlabs.com/puppet/latest/reference/install_windows.html#download-the-windows-puppet-agent-package}}).
+%To test whether this setup works for the Windows machine, we have yet to the puppet agent on that machine (see {\small \url{https://docs.puppetlabs.com/puppet/latest/reference/install_windows.html#download-the-windows-puppet-agent-package}}).
 
 \section{Follow up}
 You can, and should, read more about Puppet templates at http://docs.puppetlabs.com/learning/templates.html.
