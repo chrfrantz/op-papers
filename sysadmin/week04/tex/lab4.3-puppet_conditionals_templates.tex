@@ -74,16 +74,15 @@ There are a few new things happening in this manifest.
   \item Instead of copying over static files, we are using \emph{templates}.  The template files are to be placed in the \texttt{templates} subdirectory of the module.  Puppet's templates use the erb (Embedded Ruby) templating system.
 \end{itemize}
 
-Right now, we can not just copy and past those files. They are not sufficient to capture the difference between the Debian and Ubuntu system when configuring (and signing certificates) in puppet.
+Right now, we can not just copy and past those files. Depending on your configuration, you may need to deal with the different hosts files on Debian and Ubuntu systems.
 
-Do you recall the difference? Did you deal with it?
+Do you need to deal with it?
 
 \vspace{0.5cm}
 %(you should have realised that puppet on Ubuntu uses the name in the second column of the hosts file, whereas Debian uses the third column).
 
-Which variable can you use instead of {\tt \$osfamily} to differentiate between Debian and Ubuntu systems in puppet?
+If so, which variable can you use instead of {\tt \$osfamily} to differentiate between Debian and Ubuntu systems in puppet?
 
-Depending on how you dealt with this problem (either by having different host files or not), modify the script above to capture this difference. (If you used all the same hosts files across machines, you should be fine with the script above.)
 
 
 \section{Template files}
