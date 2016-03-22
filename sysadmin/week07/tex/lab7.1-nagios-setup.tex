@@ -84,7 +84,7 @@ is up.
 
 \begin{verbatim}
 
-nagios_host { 'db.sqrawler.com':
+nagios_host { 'db.micro-agents.net':
                  target => '/etc/nagios3/conf.d/ppt_hosts.cfg',
                  alias => 'db',
                  address => '10.25.1.18',
@@ -130,7 +130,7 @@ identify your MySQL servers to Nagios.
 nagios_hostgroup{'db-servers':
               target => '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
               alias => 'Database Servers',
-              members => 'db.sqrawler.com',
+              members => 'db.micro-agents.net',
 }
 
 \end{verbatim}

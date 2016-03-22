@@ -8,7 +8,7 @@
 
 
 
-  nagios_host { 'db.sqrawler.com':
+  nagios_host { 'db.micro-agents.net':
                  target => '/etc/nagios3/conf.d/ppt_hosts.cfg',
                  alias => 'db',
                  address => '10.25.1.18',
