@@ -35,7 +35,7 @@ for Nagios with the command
 You will be asked to supply a password.  You will use that with the 
 user name \texttt{nagiosadmin} to log onto the web console.
 
-Now log in.  Loook in particular at Hosts and Hostgroups.  Nagios is configured
+Now log in.  Look in particular at Hosts and Hostgroups.  Nagios is configured
 to monitor the local machine (\texttt{mgmt}) and nothing else.
 
 \section{Configure Nagios using Puppet}
@@ -99,7 +99,7 @@ nagios_host { 'db.micro-agents.net':
 \end{verbatim}
 
 
-You'll have to change the IP address to match the address of
+Note that you'll have to change the IP address to match the address of
 your \texttt{db} server.
 
 4. Now define your service.  This basically tells Nagios
