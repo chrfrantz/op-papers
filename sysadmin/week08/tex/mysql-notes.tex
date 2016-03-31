@@ -3,12 +3,12 @@
 % Dec 2012
 
 \documentclass[10pt]{beamer}
-\usetheme{Dunedin}
+%\usetheme{Dunedin}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
 \newcommand\codeHighlight[1]{\textcolor[rgb]{1,0,0}{\textbf{#1}}}
 
-\title{Nagios Checks in Depth}
+\title{MySQL Monitoring in Nagios}
 %\subtitle{So Your Stuff Can look Nifty}
 \author[IN719]{Systems Administration}
 \institute[Otago Polytechnic]{
@@ -45,7 +45,7 @@ define command{
 \begin{frame}[fragile]
   \frametitle{Use this new check}
 
-The MySQL service is not defined, so add:
+Redefine the MySQL service:
 \begin{Verbatim}[commandchars=\\\[\]]
 #check that mysql services are running
 define service {
@@ -71,9 +71,10 @@ usernames and passwords.  Add:
 
 }
 \end{Verbatim}
+
+Why don't we need to hard-code the db server's name or IP?
+
 \end{frame}
-
-
 
 
 \end{document}

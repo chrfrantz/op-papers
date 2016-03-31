@@ -3,7 +3,7 @@
 % Dec 2012
 
 \documentclass[10pt]{beamer}
-\usetheme{Dunedin}
+%\usetheme{Dunedin}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
 \newcommand\codeHighlight[1]{\textcolor[rgb]{1,0,0}{\textbf{#1}}}
@@ -132,9 +132,9 @@ it's not working yet.
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
-  \frametitle{in /etc/nagios3/conf.d/ppt\_mysq\_service.cfg}
+  \frametitle{in /etc/nagios3/conf.d/ppt\_mysql\_service.cfg}
 
-The MySQL service is not defined, so add:
+Currently the MySQL service is defined like this...
 \begin{Verbatim}[commandchars=\\\[\]]
 #check that mysql services are running
 define service {
@@ -172,7 +172,7 @@ define command{
 \begin{itemize}
   \item Sometimes we want to monitor remote services that are not exposed on a network
   \item There are a few ways to handle this, each with its pros and cons
-  \item We'll consider one way, using \emph{NRPE}
+  \item We'll consider one way, using Nagios Remote Plugin Executor (\emph{NRPE})
   \item We will pick up this topic next time.
 \end{itemize}
 
