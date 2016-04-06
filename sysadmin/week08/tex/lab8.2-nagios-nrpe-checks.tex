@@ -28,7 +28,7 @@ The NRPE service could be easily abused, since basically it accepts remote reque
 \section{NRPE Server configuration}
 First we need to edit the file \texttt{/etc/nagios/nrpe.cfg} on our \texttt{db} server.  We'll direct the NRPE service to accept requests from our \texttt{mgmt} servers and configure the disk check.
 
-\textbf{Step 1:} Before you start editing your configuration file, use the \texttt{df} command to find the device id for your hard disk.  It will look something like \texttt{/div/disk/by-uuid/f8c150e9-8751-4f87-8e56-364ad5b3b8f5}.  You will need that for your configuration.
+\textbf{Step 1:} Before you start editing your configuration file, use the \texttt{df} command to find the device id for your hard disk.  It will look something like \texttt{/dev/disk/by-uuid/f8c150e9-8751-4f87-8e56-364ad5b3b8f5}.  You will need that for your configuration.
 
 \textbf{Step 2:} Find the line that specifies \texttt{allowed\_hosts} and change it to allow requests from \texttt{mgmt.micro-agents.net}.
 
