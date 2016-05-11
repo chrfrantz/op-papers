@@ -14,7 +14,7 @@
 \maketitle
 
 \section*{Introduction}
-So far we have dealt with two parts of our Bacula setup:
+So far we have developed a basis understanding of Bacula and started to deal with two parts of our Bacula setup. Ensure that you finish those tasks before continuing with today's lab:
 \begin{enumerate}
 	\item Installing the needed components on various servers;
 	\item Configuring those components to communicate with each other over the network.
@@ -65,7 +65,7 @@ Job {
 
 \end{verbatim}
 
-For this to work, we need to define some elements. We need a \texttt{Client} definition for \texttt{exampleserver-fd}. We need a \texttt{Storage} definition. We discussed these items earlier in the week.  We need a \texttt{Storage} definition that we also did last time.  The \texttt{WeeklyCycle} schedule definition is included in the default configuration.  You can use it as a model to create alternative \texttt{Schedule}s.
+For this to work, we need to define some elements. We need a \texttt{Client} definition for \texttt{exampleserver-fd}. We need a \texttt{Storage} definition. We touched upon these aspects in the lecture.  We further need a \texttt{Storage} definition that we also did last time.  The \texttt{WeeklyCycle} schedule definition is included in the default configuration.  You can use it as a model to create alternative \texttt{Schedule}s.
 The default \texttt{File} pool will suffice.
 
 We do need to look at an example \texttt{FileSet}.
@@ -80,10 +80,10 @@ We do need to look at an example \texttt{FileSet}.
        }
        File = /etc
        File = /home
-   }
-   Exclude {
+    }
+    Exclude {
        File = *.swp
-   }
+    }
   }
   \end{verbatim}
   
