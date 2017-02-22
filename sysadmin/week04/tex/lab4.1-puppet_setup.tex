@@ -9,7 +9,7 @@
 
 \usepackage[T1]{fontenc}
 
-\newcommand{\domain}{micro-agents.net}
+\newcommand{\domain}{op-bit.nz}
 
 \begin{document}
 
@@ -28,7 +28,7 @@ On your management server, use \texttt{apt-get} to install the \texttt{puppetmas
 \
 \begin{verbatim}
   [master]
-  certname=mgmt.micro-agents.net
+  certname=mgmt.op-bit.nz
 \end{verbatim}
 
 Next, create the file \texttt{/etc/puppet/manifests/site.pp}.  It should be empty for now.
@@ -39,15 +39,15 @@ Restart puppetmaster with the command \texttt{sudo /etc/init.d/puppetmaster rest
 On your db server, use \texttt{apt-get} to install the \texttt{puppet} package and its dependencies.  Connect your agent to the puppet server manually with the following command:
 
 \begin{verbatim}
-puppet agent --server=mgmt.micro-agents.net --no-daemonize --verbose
+puppet agent --server=mgmt.op-bit.nz --no-daemonize --verbose
 \end{verbatim}
 
 It produces output as shown in the following and will not return to the command prompt (unless interrupted). Just leave it an observe it once you continue with the server configuration.
 
 \begin{verbatim}
-info: Creating a new SSL key for db.micro-agents.net
+info: Creating a new SSL key for db.op-bit.nz
 info: Caching certificate for ca
-info: Creating a new SSL certificate request for db.micro-agents.net
+info: Creating a new SSL certificate request for db.op-bit.nz
 info: Certificate Request fingerprint (md5): A1:2C:E1:C1:2F:C5:AE:34:A9:A5:4F:C9:CA:7A:16:C6
 
 \end{verbatim}
@@ -59,7 +59,7 @@ Now we want to get Puppet to do something on our systems.  To begin, make sure t
 
 Next create the file \texttt{/etc/puppet/manifests/nodes.pp} on your management server and put the following text in it:
 \begin{verbatim}
-  node 'db.micro-agents.net' {
+  node 'db.op-bit.nz' {
     package { 'vim': ensure => present }
   }
 \end{verbatim}

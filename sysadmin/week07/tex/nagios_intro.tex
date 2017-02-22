@@ -69,7 +69,7 @@ Nagios is the best known and most widely used of these and is the one we will us
   \frametitle{Example Scenario}
   
 \begin{itemize}
-\item We have a server, db.micro-agents.net, running the MySQL DBMS.
+\item We have a server, db.op-bit.nz, running the MySQL DBMS.
 \item We want to monitor server uptime and the MySQL service.
 \item One systems admin should be notified of any issues.
 \item We will use puppet to manage the Nagios config.
@@ -83,7 +83,7 @@ Nagios is the best known and most widely used of these and is the one we will us
   
   We will define the following nagios resources in our Nagios Puppet module
 \begin{itemize}
-\item host:  db.micro-agents.net
+\item host:  db.op-bit.nz
 \item hostgroup with our host as a member
 \item contact and contactgroup for the admin
 \item service:  MySQL
@@ -96,7 +96,7 @@ Nagios is the best known and most widely used of these and is the one we will us
 %\begin{frame}[fragile]
   %\frametitle{Host}
 %\begin{verbatim}
-%%nagios_host { 'db.micro-agents.net':
+%%nagios_host { 'db.op-bit.nz':
                  %%target => '/etc/nagios3/conf.d/ppt_hosts.cfg',
                  %%alias => 'db',
                  %%address => '10.25.1.18',
