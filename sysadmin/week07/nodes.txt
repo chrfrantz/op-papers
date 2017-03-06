@@ -8,7 +8,7 @@
 
 
 
-  nagios_host { 'db.micro-agents.net':
+  nagios_host { 'db.op-bit.nz':
                  target => '/etc/nagios3/conf.d/ppt_hosts.cfg',
                  alias => 'db',
                  address => '10.25.1.18',
@@ -34,7 +34,7 @@
  nagios_contactgroup { 'sysadmins':
                target => '/etc/nagios3/conf.d/ppt_contactgroups.cfg',
                alias => 'Systems Administrators',
-               members => 'tclark',
+               members => 'cfrantz',
   }
 
 
@@ -47,9 +47,9 @@
 
 
 
-nagios_contact { 'tclark':
+nagios_contact { 'cfrantz':
               target => '/etc/nagios3/conf.d/ppt_contacts.cfg',
-              alias => 'Tom Clark',
+              alias => 'C. Frantz',
               service_notification_period => '24x7',
               host_notification_period => '24x7',
               service_notification_options => 'w,u,c,r',
@@ -98,7 +98,7 @@ nagios_service {'MySQL':
     nagios_hostgroup{'db-servers':
               target => '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
               alias => 'Database Servers',
-              members => 'db.sqrawler.com',
+              members => 'db.op-bit.nz',
   }
 
  
