@@ -39,7 +39,7 @@ Restart puppetmaster with the command \texttt{sudo /etc/init.d/puppetmaster rest
 On your db server, use \texttt{apt-get} to install the \texttt{puppet} package and its dependencies.  Connect your agent to the puppet server manually with the following command:
 
 \begin{verbatim}
-puppet agent --server=mgmt.op-bit.nz --no-daemonize --verbose
+sudo puppet agent --server=mgmt.op-bit.nz --no-daemonize --verbose
 \end{verbatim}
 
 It produces output as shown in the following and will not return to the command prompt (unless interrupted). Just leave it an observe it once you continue with the server configuration.

@@ -15,7 +15,7 @@
 \maketitle
 
 \section*{Introduction}
-A Puppet \emph{module} is a collection of related resources that can be applied to a node as a single unit. For example, you may want to mange a service, together with its configuration files.  In this lab we'll create a simple module to manage \texttt{sudo}
+A Puppet \emph{module} is a collection of related resources that can be applied to a node as a single unit. For example, you may want to manage a service, together with its configuration files.  In this lab we will create a simple module to manage \texttt{sudo}
 
 \section*{Creating the module}
 Modules can be placed in few standard locations, typically \texttt{/var/lib/puppet/modules}, \texttt{/etc/puppet/modules}, and \texttt{/opt/modules}.  Create your sudo module in \texttt{/etc/puppet/modules}.  To begin, create the following directories, all under \texttt{/etc/puppet/modules}
@@ -47,11 +47,13 @@ class sudo {
 }
 \end{verbatim}
 
-We defined a class, ``sudo" with two resources in it.  The first makes sure that the sudo package is installed.  The second directs Puppet to copy the configuration file we'll place in the module.  It also sets various properties on the copied file.  The source directive says to take the file from \texttt{etc/sudoers}, which will be found under the \texttt{files} subdirectory of the module.  The last directive, ``require" directs Puppet to ensure that the sudo package is installed before copying the configuration file.
+We defined a class, ``sudo" with two resources in it.  The first makes sure that the sudo package is installed.  The second directs Puppet to copy the configuration file we'll place in the module.  It also sets various properties on the copied file.  The source directive says to take the \underline{file} from \texttt{etc/sudoers}, which will be found under the \texttt{files} subdirectory of the module.  The last directive, ``require" directs Puppet to ensure that the sudo package is installed before copying the configuration file.
 
 In the future we can make changes to the configuration file in the module and that updated configuration will be distributed to any agents that need it without requiring us to update the manifest or take any other action.
 
-We still need to place a copy of a sudoers file in the module.  Take a good copy of your sudoers file and copy it (to the \underline{file}) \texttt{/etc/puppet/modules/sudo/files/etc/sudoers}.
+We still need to place a copy of a sudoers file in the module.  Take a good copy of your sudoers file and copy it (to the \underline{file}) \texttt{/etc/puppet/modules/sudo/files/etc/sudoers}. 
+
+\textbf{Note:} The physical location (\texttt{/etc/puppet/modules/sudo/\underline{files}/etc/sudoers}) and the instruction (\texttt{source => "puppet:///modules/sudo/etc/sudoers"}) as part of the module specification are slightly different. The module file assumes that all files are in the subfolder ``files'' and thus does not include it in the instruction. This is important to bear in mind whenever you write modules.
 
 \section*{Applying the module to a node}
 Once the module is ready we can apply it to a node.  To do this you only need to add one line to the \texttt{nodes.pp} file.  In the node resource you created for the DB server in that last lab, add the line
@@ -63,11 +65,11 @@ You can watch the agent apply the configuration by starting it manually:
 \texttt{sudo puppet agent --server=mgmt.op-bit.nz --no-daemonize --verbose --onetime}
 
 \section*{Remaining tasks}
-Using Puppet to configure one server is a bit masturbatory.  Get puppet agents running on your remaining Linux hosts, create node resources for them, and start creating modules for the resources that they have in common.  Don't forget that the management server should also be an agent.
+Using Puppet to configure one server is a bit of a drama.  Get puppet agents running on your remaining Linux hosts, create node resources for them, and start creating modules for the resources that they have in common.  Don't forget that the management server should also be an agent itself.
 
 You want your Puppet agents to start on boot and run as daemons.  Right now they are not configured to do that, but if you try to start the Puppet agent daemon, it basically tells you what you need to do.  Get your Puppet agents running as daemons. 
 
-\section*{A question for next time}
-Under the sudo module directory, there is a \texttt{templates} subdirectory.  What is that for?  How do you use it?
+%\section*{A question for next time}
+%Under the sudo module directory, there is a \texttt{templates} subdirectory.  What is that for?  How do you use it?
 
 \end{document}
