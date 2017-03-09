@@ -67,7 +67,7 @@ You can watch the agent apply the configuration by starting it manually:
 \section*{Remaining tasks}
 Using Puppet to configure one server is a bit of a drama.  Get puppet agents running on your remaining Linux hosts, create node resources for them, and start creating modules for the resources that they have in common.  Don't forget that the management server should also be an agent itself.
 
-You want your Puppet agents to start on boot and run as daemons.  Right now they are not configured to do that, but if you try to start the Puppet agent daemon, it basically tells you what you need to do.  Get your Puppet agents running as daemons. 
+You want your Puppet agents to start on boot and run as daemons.  Right now they are not configured to do that, but if you try to start the Puppet agent daemon, it basically tells you what you need to do.  Get your Puppet agents running as daemons. Ensure you keep an eye on the log file to see track their activity (the log file directory is configured in the main configuration file).
 
 %\section*{A question for next time}
 %Under the sudo module directory, there is a \texttt{templates} subdirectory.  What is that for?  How do you use it?
