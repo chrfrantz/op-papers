@@ -36,7 +36,7 @@ Next, create the file \texttt{/etc/puppet/manifests/site.pp}.  It should be empt
 Restart puppetmaster with the command \texttt{sudo /etc/init.d/puppetmaster restart}.
 
 \section{Installing and connecting an agent}
-On your db server, use \texttt{apt-get} to install the \texttt{puppet} package and its dependencies.  Connect your agent to the puppet server manually with the following command:
+On your db server, use \texttt{apt-get} to install the \texttt{puppet} package and its dependencies. Ensure that the agent is not running after installation (\texttt{sudo service puppet stop}). Connect your agent to the puppet server manually with the following command:
 
 \begin{verbatim}
 sudo puppet agent --server=mgmt.op-bit.nz --no-daemonize --verbose
@@ -52,7 +52,7 @@ info: Certificate Request fingerprint (md5): A1:2C:E1:C1:2F:C5:AE:34:A9:A5:4F:C9
 
 \end{verbatim}
 
-Now, on the puppetmaster, run the command \texttt{puppet cert --list}.  You should see the signing request for your agent.  Sign the key with the command \texttt{ puppet cert --sign db.\domain}.
+Now, on the puppetmaster, run the command \texttt{puppet cert --list}.  You should see the signing request for your agent.  Sign the key with the command \texttt{ puppet cert --sign db.\domain} (note that the machine name needs to be exactly the same as the one you read in the output of \texttt{puppet cert --list} - and depends on the correct hostname hosts file configuration).
 
 \section{Sample agent configuration}
 Now we want to get Puppet to do something on our systems.  To begin, make sure that \texttt{vim} is not installed on your db server by running \texttt{sudo apt-get remove vim}. 
@@ -64,7 +64,7 @@ Next create the file \texttt{/etc/puppet/manifests/nodes.pp} on your management 
   }
 \end{verbatim}
 
-Since we are working on it, add another entry for \texttt{mc}.
+Since we are working on it, add another package entry for \texttt{mc} in the node resource.
 
 This directs Puppet to be sure that those packages are installed on our agent -- or at least it will, when you add the following line to \texttt{/etc/puppet/manifests/site.pp}:
 
@@ -73,6 +73,8 @@ This directs Puppet to be sure that those packages are installed on our agent --
 \end{verbatim}
 
 It is not necessary to restart the puppetmaster, but if you restart the agent (ctrl-c, up-arrow, enter) it will speed the process along.  Log into your db server in another session and check to see that \texttt{vim} and \texttt{mc} were installed. 
+
+Note: Be mindful when copying aspects from the PDF, since various characters, such as apostrophes, will be converted to different symbols that puppet cannot read properly.
 
 
 \end{document}
