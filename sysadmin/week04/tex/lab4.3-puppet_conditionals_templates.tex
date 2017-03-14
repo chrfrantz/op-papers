@@ -74,14 +74,16 @@ There are a few new things happening in this manifest.
   \item Instead of copying over static files, we are using \emph{templates}.  The template files are to be placed in the \texttt{templates} subdirectory of the module.  Puppet's templates use the erb (Embedded Ruby) templating system.
 \end{itemize}
 
-Right now, we can not just copy and past those files. Depending on your configuration, you may need to deal with the different hosts files on Debian and Ubuntu systems.
+Note: Please be careful when copying code from PDFs. You will most likely need to reformat it and fix the apostrophes. It may just be better to type it yourself.
 
-Do you need to deal with it?
+%Right now, we can not just copy and past those files. Depending on your configuration, you may need to deal with the different hosts files on Debian and Ubuntu systems.
 
-\vspace{0.5cm}
+%Do you need to deal with it?
+
+%\vspace{0.5cm}
 %(you should have realised that puppet on Ubuntu uses the name in the second column of the hosts file, whereas Debian uses the third column).
 
-If so, which variable can you use instead of {\tt \$osfamily} to differentiate between Debian and Ubuntu systems in puppet?
+%If so, which variable can you use instead of {\tt \$osfamily} to differentiate between Debian and Ubuntu systems in puppet?
 
 
 
@@ -115,11 +117,11 @@ ff02::2 ip6-allrouters
 
 \end{verbatim}
 
-In these templates we are inserting the correct value for the local host name with the \texttt{hostname} variable that is defined by Facter.
+In these templates we are inserting the correct value for the local hostname with the \texttt{hostname} variable that is defined by Facter.
 
 %To test whether this setup works for the Windows machine, we have yet to the puppet agent on that machine (see {\small \url{https://docs.puppetlabs.com/puppet/latest/reference/install_windows.html#download-the-windows-puppet-agent-package}}).
 
 \section{Follow up}
-You can, and should, read more about Puppet templates at http://docs.puppetlabs.com/learning/templates.html.
+You can, and should, read more about Puppet templates at http://docs.puppetlabs.com/learning/templates.html. We will use puppet throughout this course, so there may be further application cases for templates.
 
 \end{document}
