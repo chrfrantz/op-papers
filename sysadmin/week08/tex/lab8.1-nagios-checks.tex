@@ -32,7 +32,7 @@
 \begin{enumerate}
   \item Local services
   \item Network exposed services
-  \item Remote services
+  \item Remote services (next session)
 \end{enumerate}
 
 \end{frame}
@@ -43,7 +43,7 @@
 
 
 \begin{itemize}
-  \item Services running on the same system that runs Nagios
+  \item Services running on the \underline{same system that runs Nagios}
   \item A good way to explore the mechanics of plugins and checks
 \end{itemize}
 
@@ -135,6 +135,9 @@ it's not working yet.
   \frametitle{in /etc/nagios3/conf.d/ppt\_mysql\_service.cfg}
 
 Currently the MySQL service is defined like this...
+
+\vspace{0.5cm}
+
 \begin{Verbatim}[commandchars=\\\[\]]
 #check that mysql services are running
 define service {
@@ -149,6 +152,10 @@ define service {
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
   \frametitle{in /etc/nagios-plugins/config/mysql.cfg}
+  
+How does the command definition look like?
+
+\vspace{0.5cm}
 
 \begin{Verbatim}[commandchars=\\\[\]]
 # 'check_mysql' command definition
@@ -157,10 +164,79 @@ define command{
   command_line  /usr/lib/nagios/plugins/check_mysql
                 -H '$HOSTADDRESS$' 
 }
+\end{Verbatim}
+
+\vspace{0.5cm}
+
+Do you see any problem?
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+  \frametitle{in /etc/nagios-plugins/config/mysql.cfg}
+
+\textbf{$\rightarrow$ We require credentials to check MySQL.}
+
+\vspace{0.5cm}
+Consider the following command definition: (Note: most commands have variants)
+\vspace{0.5cm}
+
+\begin{Verbatim}[commandchars=\\\[\]]
+# 'check_mysql_cmdlinecred' command definition
+define command{
+  command_name  check_mysql_cmdlinecred
+  command_line  /usr/lib/nagios/plugins/check_mysql
+                -H '$HOSTADDRESS$' -u '$ARG1$' -p '$ARG2$'
+}
 
 
 
 \end{Verbatim}
+\end{frame}
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+  \frametitle{Use this new check in your puppet definition}
+
+Redefine the MySQL service:
+
+\vspace{0.5cm}
+
+\begin{Verbatim}[commandchars=\\\[\]]
+#check that mysql services are running
+define service {
+	...
+    check_command    \codeHighlight[check_mysql_cmdlinecred!$USER3$!$USER4$]
+}
+
+\end{Verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+  \frametitle{in /etc/nagios3/resources.cfg}
+
+The file {\tt resources.cfg} contains variables we need (like usernames and passwords), but it needs to be handled carefully. 
+
+Adjust according to your configuration:
+
+\vspace{0.5cm}
+
+\begin{Verbatim}[commandchars=\\\[\]]
+  # Store some usernames and passwords (hidden from the CGIs)
+  # MySQL username and password
+  \codeHighlight[$USER3$]=nagioscheck
+  \codeHighlight[$USER4$]=foo
+
+}
+\end{Verbatim}
+
+%Why don't we need to hard-code the db server's name or IP?
+
+\vspace{0.5cm}
+
+\textbf{This is your task for this session (assuming you finished the previous tickets)!}
+
 \end{frame}
 
 
@@ -170,9 +246,9 @@ define command{
 
 
 \begin{itemize}
-  \item Sometimes we want to monitor remote services that are not exposed on a network
-  \item There are a few ways to handle this, each with its pros and cons
-  \item We'll consider one way, using Nagios Remote Plugin Executor (\emph{NRPE})
+  \item Sometimes we want to monitor remote services that are not exposed on a network.
+  \item There are a few ways to handle this, each with its pros and cons.
+  \item We'll consider one way, using Nagios Remote Plugin Executor (\emph{NRPE}).
   \item We will pick up this topic next time.
 \end{itemize}
 

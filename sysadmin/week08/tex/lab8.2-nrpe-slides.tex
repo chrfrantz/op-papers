@@ -70,11 +70,11 @@ The approach
 \begin{frame}
   \frametitle{Install the NRPE daemon}
 
-On the remote server you want to monitor
+\textbf{On the remote server} you want to monitor
 \begin{itemize}
-	\item install \texttt{nagios-nrpe-server}
+  \item Install \texttt{nagios-nrpe-server}
   \item Edit \texttt{/etc/nagios/nrpe.cfg}
-  \item Add \texttt{mgmt} to the \texttt{allowed\_hosts} values
+  \item Add \texttt{mgmt} to the \texttt{allowed\_hosts} values (Try the fully-qualified domain name (FQDN) if you have problems.)
   \item Add the following command to the commands section \\
    \texttt{command[check\_disk]=/usr/lib/nagios/plugins/check\_disk -w 20\% -c 10\%}
 
@@ -87,6 +87,7 @@ On the remote server you want to monitor
   \frametitle{On the Nagios server}
 
   \begin{itemize}
+      \item Install \texttt{nagios-nrpe-plugin}
 	  \item Define a service that checks remote disks over NRPE.
 	  \item Define a new hostgroup.
 	  \item Put the remote servers on which we want to monitor disk

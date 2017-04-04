@@ -25,7 +25,10 @@ But how can we check for local properties like the latter on remote systems?  Se
 
 The NRPE service could be easily abused, since basically it accepts remote requests to execute programs on the monitored server.  For this reason, we have to configure it carefully.
 
-\section{NRPE Server configuration}
+\section{NRPE Server configuration -- on the server we want to monitor}
+
+Install the NRPE server package {\tt nagios-nrpe-server}. Note that install a daemon that allows the remote execution of requests. \textbf{Do not} install that on the mgmt server -- only the monitored machines.
+
 First we need to edit the file \texttt{/etc/nagios/nrpe.cfg} on our \texttt{db} server.  We'll direct the NRPE service to accept requests from our \texttt{mgmt} servers and configure the disk check.
 
 \textbf{Step 1:} Before you start editing your configuration file, use the \texttt{df} command to find the device id for your hard disk.  It will look something like \texttt{/dev/disk/by-uuid/f8c150e9-8751-4f87-8e56-364ad5b3b8f5}.  You will need that for your configuration.
@@ -36,7 +39,10 @@ First we need to edit the file \texttt{/etc/nagios/nrpe.cfg} on our \texttt{db} 
 
 Be sure that you restart the \texttt{nagios-nrpe-server} service after altering the configuration.
 
-\section{Nagios Server Configuration}
+\section{Nagios Server Configuration - on the mgmt server}
+
+Install {\tt nagios-nrpe-plugin} on the mgmt server.
+
 Now that our remote server is ready, we can configure the check in Nagios on \texttt{mgmt}.
 
 \textbf{Step 1:} Create a new hostgroup with a name like ``Remote Disks".  Place your \texttt{db.op-bit.nz} host in this new hostgroup.
