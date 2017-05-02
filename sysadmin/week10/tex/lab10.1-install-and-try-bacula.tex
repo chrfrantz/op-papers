@@ -20,13 +20,13 @@ Bacula is a powerful backup management system that will let you define and run b
 Carry out the following procedure on your \texttt{storage} server.
 
 \begin{enumerate}
-  \item Use \texttt{apt-get} to install the \texttt{bacula-server} package\footnote{We will bypass Puppet for today's lab, but you should create puppet modules for Bacula later.}.  At one point you will be asked if you want to use SQLite; say yes to this.  
+  \item Use \texttt{apt-get} to install the \texttt{bacula-server} package\footnote{We will bypass Puppet for today's lab, but we will create puppet modules for Bacula later.}.  At one point you will be asked if you want to use SQLite; say `yes' to this.  
 
   \item Install the \texttt{bacula-client} package.
 
   \item Bacula's configuration files are in \texttt{/etc/bacula}. We will edit two of them today.
         \begin{enumerate}
-            \item In \texttt{/etc/bacula/bacula-sd.conf}, look for the \emph{Device} section named "FileStorage".  Change the \emph{Archive Device} to 
+            \item In \texttt{/etc/bacula/bacula-sd.conf}, look for the \emph{Device} section named ``FileStorage".  Change the \emph{Archive Device} to 
 	          \texttt{/home/bacula/storage}.
 
 	    \item In \texttt{/etc/bacula/bacula-dir.conf}, look for the \emph{Job} section named \emph{RestoreFiles}.  Change the \emph{Where} property
