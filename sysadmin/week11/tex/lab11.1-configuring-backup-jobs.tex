@@ -4,10 +4,12 @@
 
 \usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
-\usepackage{enumerate}								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{enumerate}								% TeX will automatically convert eps --> pdf in pdflatex	
+
+\usepackage{url}	
 
 
-\title{Lab 11.2:  Configuring Backup Jobs\\ IN719 Systems Administration}
+\title{Lab 11.1:  Configuring Backup Jobs\\ IN719 Systems Administration}
 \date{}							% Activate to display a given date or no date
 
 \begin{document}
@@ -50,7 +52,7 @@ Here is an example of a backup \texttt{Job}:
 
 \begin{verbatim}
 Job {
-  Name = "ExampleBackp"
+  Name = "ExampleBackup"
   Type = Backup
   Level = Incremental
   Client = exampleserver-fd
@@ -88,6 +90,12 @@ We do need to look at an example \texttt{FileSet}.
   \end{verbatim}
   
 This \texttt{FileSet} will back up everything under \texttt{/home} and \texttt{/etc} but will ignore vi swap files.
+
+\section{Some tips}
+
+To debug your configuration properly, start incrementally. Plan (perhaps even on paper or wiki), which data needs to be saved (from where to where), and start with one machine at a time. Write the configuration files, deploy them and use \texttt{bconsole status \textless name\textgreater} (with \textless name\textgreater~being the name of the machine as configured in the \emph{configuration files} -- not necessarily the hostname!). To check whether your filesets are correctly configured, run \texttt{show filesets} in \texttt{bconsole}.
+
+Some resources: \url{http://www.bacula.org/5.2.x-manuals/en/main/main/Brief_Tutorial.html} provides a brief bacula tutorial; \url{http://www.bacula.org/5.2.x-manuals/en/main/main/Bacula_Main_Reference.html} provides the main reference; finally, recall the bacula overview slide set for the schematic overview of the configuration files and the software components.
 
 \end{document}
 
